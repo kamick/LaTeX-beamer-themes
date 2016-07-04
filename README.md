@@ -1,21 +1,24 @@
-* GI
+# LaTeX-beamer-themes
+  LaTeX-beamer personal themes for G-SCOP and GI
+
+- *GI*:
   required files for LaTeX-beamer theme for GI
 
-* GI-exemples
+- *GI-exemples*:
   docs and examples for LaTeX-beamer theme for GI
 
-* GSCOP
+- *GSCOP*:
   required files for LaTeX-beamer theme for G-SCOP
   
-* GSCOP-exemples
+- *GSCOP-exemples*:
   docs and examples for LaTeX-beamer theme for GI
 
-* img-src
+- *img-src*:
   original images (for dev purpose)
 
-* scripts
+- *scripts*:
   auxilary scripts (for dev purpose)
 
-* README
+- *README*:
   this file
   
