@@ -105,7 +105,7 @@
 %% frame title
 \setbeamertemplate{frametitle}{%
   \begin{beamercolorbox}[wd=\paperwidth,ht=0mm,dp=0mm,right]{frametile}%
-    \bfseries\Large\insertframetitle\kern5mm%
+    \bfseries\Large\insertframetitle\kern.039\paperwidth%
   \end{beamercolorbox}%
 }
 
@@ -116,35 +116,35 @@
 %% headline!
 \def\gscop@tmpa{none}\ifx\gscop@options@headline\gscop@tmpa%
   % none!
-  \setbeamertemplate{headline}{\kern5mm}%
+  \setbeamertemplate{headline}{\kern.052\paperheight}%
 \else\def\gscop@tmpa{plain}\ifx\gscop@options@headline\gscop@tmpa%
   % plain!
   \setbeamertemplate{headline}{%
-    \kern4.5mm%
+    \kern.047\paperheight%
     \begin{beamercolorbox}[wd=\paperwidth,ht=0mm,dp=0mm]{section in head/foot}
       \noindent\hfill\insertsectionnavigationhorizontal{.7\paperwidth}{}{}%
     \end{beamercolorbox}%
-    \kern3.7mm%
+    \kern.039\paperheight%
   }%
 \else\def\gscop@tmpa{fancy}\ifx\gscop@options@headline\gscop@tmpa%
   % fancy !
   \setbeamertemplate{headline}{%
-    \kern4.5mm%
+    \kern.047\paperheight%
     \begin{beamercolorbox}[wd=\paperwidth,ht=0mm,dp=0mm]{section in head/foot}
       \noindent\hfill\insertnavigation{.7\paperwidth}%
     \end{beamercolorbox}%
-    \kern3.7mm%
+    \kern.039\paperheight%
   }%
 \else
   % simple ! (default)
   \setbeamertemplate{headline}{%
-    \kern4.5mm%
+    \kern.047\paperheight%
     \begin{beamercolorbox}[wd=\paperwidth,ht=0mm,dp=0mm]{section in head/foot}
-      \noindent\hbox to .3\textwidth{\kern5mm\usebeamercolor[fg]{author in head/foot}\insertshortauthor, \usebeamercolor[fg]{title in head/foot}\insertshorttitle}%
+      \noindent\hbox to .3\textwidth{\kern.039\paperwidth\usebeamercolor[fg]{author in head/foot}\insertshortauthor, \usebeamercolor[fg]{title in head/foot}\insertshorttitle}%
       \hbox to .3\textwidth{\hfill\textbf{\insertsection}~|~}%
-      \insertsubsectionnavigationhorizontal{.4\textwidth}{}{\kern5mm}%
+      \insertsubsectionnavigationhorizontal{.4\textwidth}{}{\kern.039\paperwitdh}%
     \end{beamercolorbox}%
-    \kern3.7mm%
+    \kern.039\paperheight%
   }%
 \fi\fi\fi
 
@@ -158,7 +158,7 @@
 \else%
   % default progressbar
   \def\gscop@progressbar#1{%
-    \gscop@dima=\paperwidth \advance\gscop@dima by -3mm% max width
+    \gscop@dima=\paperwidth \advance\gscop@dima by -.026\paperwidth% max width
     \gscop@dimb=\gscop@dima% current with
     % compute progress actual bar width
     \ifnum\insertframenumber>\gscop@totalframenumber\gscop@counta=\gscop@totalframenumber\else\gscop@counta=\insertframenumber\fi%
@@ -207,36 +207,36 @@
 \def\gscop@tmpa{none}\ifx\gscop@options@footline\gscop@tmpa%
   % none!
   \setbeamertemplate{footline}{%
-    \begin{beamercolorbox}[wd=\paperwidth,dp=2.1mm,ht=2.5mm,left]{page number in head/foot}%
-      \noindent\kern2.7mm\lower.7mm\hbox{\gscop@progressbar{.5}}\kern.3mm%
+    \begin{beamercolorbox}[wd=\paperwidth,dp=.022\paperheight,ht=.026\paperheight,left]{page number in head/foot}%
+      \noindent\kern.021\paperwidth\lower.007\paperheight\hbox{\gscop@progressbar{.5}}\kern.002\paperwidth%
     \end{beamercolorbox}
   }%
 \else\def\gscop@tmpa{plain}\ifx\gscop@options@footline\gscop@tmpa%
   % plain!
   \setbeamertemplate{footline}{%
-    \begin{beamercolorbox}[wd=\paperwidth,dp=2.1mm,ht=2.5mm,left]{page number in head/foot}%
-      \noindent\kern2.7mm\lower.7mm\hbox{\gscop@progressbar{.5}}\kern.3mm%
-      \noindent\kern4mm{\bfseries\gscop@framenumber}%
+    \begin{beamercolorbox}[wd=\paperwidth,dp=.022\paperheight,ht=.026\paperheight,left]{page number in head/foot}%
+      \noindent\kern.021\paperwidth\lower.007\paperheight\hbox{\gscop@progressbar{.5}}\kern.002\paperwidth%
+      \noindent\kern.031\paperwidth{\bfseries\gscop@framenumber}%
     \end{beamercolorbox}
   }%
 \else\def\gscop@tmpa{fancy}\ifx\gscop@options@footline\gscop@tmpa%%
   % fancy!
   \setbeamertemplate{footline}{%
-    \begin{beamercolorbox}[wd=\paperwidth,dp=6.3mm,ht=1.7mm]{}%
-      \noindent\kern3mm\hrulefill\kern.5mm\par\kern.2mm\par%
-      \noindent\kern2.7mm\lower.7mm\hbox{\gscop@progressbar{.8}}\kern.3mm%
-      \noindent\kern3mm%
+    \begin{beamercolorbox}[wd=\paperwidth,dp=.066\paperheight,ht=0.18\paperheight]{}%
+      \noindent\kern.023\paperwidth\hrulefill\kern.004\paperwidth\par\kern.002\paperheight\par%
+      \noindent\kern.022\paperwidth\lower.007\paperheight\hbox{\gscop@progressbar{.8}}\kern.002\paperwidth%
+      \noindent\kern.023\paperwidth%
       {\usebeamercolor[fg]{author in head/foot}\insertshortauthor}\hfill%
       {\usebeamercolor[fg]{title in head/foot}\insertshorttitle}\hfill%
-      \hbox to 8mm{\hfill\bfseries\usebeamercolor[fg]{page number in head/foot}\gscop@framenumber}\kern1mm%
+      \hbox to .063\paperwidth{\hfill\bfseries\usebeamercolor[fg]{page number in head/foot}\gscop@framenumber}\kern.008\paperwidth%
     \end{beamercolorbox}%
   }%
 \else%
   % simple (default)
   \setbeamertemplate{footline}{%
-    \begin{beamercolorbox}[wd=\paperwidth,dp=2.1mm,ht=2.5mm,left]{page number in head/foot}%
-      \noindent\kern2.7mm\lower.7mm\hbox{\gscop@progressbar{.5}}\kern.3mm%
-      \noindent\kern4mm{\bfseries\gscop@framenumber}%
+    \begin{beamercolorbox}[wd=\paperwidth,dp=.022\paperheight,ht=.026\paperheight,left]{page number in head/foot}%
+      \noindent\kern.021\paperwidth\lower.007\paperheight\hbox{\gscop@progressbar{.5}}\kern.002\paperwidth%
+      \noindent\kern.031\paperhwidth{\bfseries\gscop@framenumber}%
     \end{beamercolorbox}
   }%
 \fi\fi\fi
@@ -265,7 +265,7 @@
   \AtBeginSection{%
     \frame{%
       \hfill\textbf{\LARGE\usebeamercolor[fg]{title}\thesection.~\insertsection}\hfill\null\par%
-      \noindent\kern-1cm\pgfuseimage{gscop@rule}\par%
+      \noindent\kern-.78\paperwidth\pgfuseimage{gscop@rule}\par%
       \vfill\par%
       \tableofcontents[sectionstyle=hide,subsectionstyle=show/show/hide]%
     }%
@@ -274,7 +274,7 @@
     \ifnum\thesubsection>1%
     \frame{%
       \hfill\textbf{\LARGE\usebeamercolor[fg]{title}\thesection.~\insertsection}\hfill\null\par%
-      \noindent\kern-1cm\pgfuseimage{gscop@rule}\par%
+      \noindent\kern-.78\paperwidth\pgfuseimage{gscop@rule}\par%
       \vfill\par%
       \tableofcontents[sectionstyle=hide,subsectionstyle=show/shaded/hide]%
     }%
