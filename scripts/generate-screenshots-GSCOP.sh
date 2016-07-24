@@ -11,7 +11,6 @@ N=0
 cd $SRC
 
 ## normal aspectratio
-#"plain" "simple,colorstyle=plain"
 for OPTIONS in \
     "none" \
 	"plain" \
@@ -43,8 +42,6 @@ do
     rm -f ${OUT%.tex}.* zz*.pdf
     mv zz*.jpg $DST
 done
-
-
 
 
 ## different aspectratio

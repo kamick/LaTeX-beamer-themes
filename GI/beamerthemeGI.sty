@@ -4,6 +4,11 @@
 %%% Logos and images may be copyrighted. Design based from the PPT presentation by someone from GI...
 %%%
 %%% Thanks to F. Thiard for early testing and comments.
+%%% Thanks to F. Mangione for suggestions
+%% ===========================================================================
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{beamerthemeGI}
+[2016/07/24. Beamer-style for GI]
 
 %% ===========================================================================
 %% ==== options ==============================================================
@@ -102,7 +107,7 @@
 %% frame title
 \setbeamertemplate{frametitle}{%
   \begin{beamercolorbox}[wd=\paperwidth,ht=0mm,dp=0mm,right]{frametile}%
-    \bfseries\Large\insertframetitle\kern5mm%
+    \bfseries\Large\insertframetitle\kern.039\paperwidth%
   \end{beamercolorbox}%
 }
 
@@ -113,34 +118,34 @@
 %% headline!
 \def\gscop@tmpa{none}\ifx\gscop@options@headline\gscop@tmpa%
   % none!
-  \setbeamertemplate{headline}{\kern5mm}%
+  \setbeamertemplate{headline}{\kern.052\paperheight}%
 \else\def\gscop@tmpa{plain}\ifx\gscop@options@headline\gscop@tmpa%
   % plain!
   \setbeamertemplate{headline}{%
-    \kern5.2mm%
+    \kern.054\paperheight%
     \begin{beamercolorbox}[wd=\paperwidth,ht=0mm,dp=0mm]{section in head/foot}
       \noindent\hfill\insertsectionnavigationhorizontal{.7\paperwidth}{}{}%
     \end{beamercolorbox}%
-    \kern3.7mm%
+    \kern.039\paperheight%
   }%
 \else\def\gscop@tmpa{fancy}\ifx\gscop@options@headline\gscop@tmpa%
   % fancy !
   \setbeamertemplate{headline}{%
-    \kern5.2mm%
+    \kern.054\paperheight%
     \begin{beamercolorbox}[wd=\paperwidth,ht=0mm,dp=0mm]{section in head/foot}
       \noindent\hfill\insertnavigation{.7\paperwidth}%
     \end{beamercolorbox}%
-    \kern3.7mm%
+    \kern.039\paperheight%
   }%
 \else
   % simple ! (default)
   \setbeamertemplate{headline}{%
-    \kern5.2mm%
+    \kern.054\paperheight%
     \begin{beamercolorbox}[wd=\paperwidth,ht=0mm,dp=0mm]{section in head/foot}
       \hbox to .6\textwidth{\hfill\textbf{\insertsection}~|~}%
-      \insertsubsectionnavigationhorizontal{.4\textwidth}{}{\kern5mm}%
+      \insertsubsectionnavigationhorizontal{.4\textwidth}{}{\kern.039\paperwidth}%
     \end{beamercolorbox}%
-    \kern3.7mm%
+    \kern.039\paperheight%
   }%
 \fi\fi\fi
 
@@ -154,7 +159,7 @@
 \else%
   % default progressbar
   \def\gscop@progressbar#1{%
-    \gscop@dima=\paperwidth \advance\gscop@dima by -4.5mm% max width
+    \gscop@dima=\paperwidth \advance\gscop@dima by -.035\paperwidth% max width
     \gscop@dimb=\gscop@dima% current with
     % compute progress actual bar width
     \ifnum\insertframenumber>\gscop@totalframenumber\gscop@counta=\gscop@totalframenumber\else\gscop@counta=\insertframenumber\fi%
@@ -203,35 +208,40 @@
 \def\gscop@tmpa{none}\ifx\gscop@options@footline\gscop@tmpa%
   % none!
   \setbeamertemplate{footline}{%
-    \begin{beamercolorbox}[wd=\paperwidth,dp=4mm,ht=1.7mm]{}%
-      \noindent\kern3.9mm\lower.8mm\hbox{\gscop@progressbar{.4}}\kern.3mm%
+    \begin{beamercolorbox}[wd=\paperwidth,dp=.042\paperheight,ht=.018\paperheight]{}%
+      \noindent\kern.031\paperwith\lower.009\paperheight\hbox{\gscop@progressbar{.4}}%
+      \kern.002\paperheight%
     \end{beamercolorbox}
   }%
 \else\def\gscop@tmpa{plain}\ifx\gscop@options@footline\gscop@tmpa%
   % plain!
   \setbeamertemplate{footline}{%
-    \begin{beamercolorbox}[wd=\paperwidth,dp=4mm,ht=1.7mm]{page number in head/foot}%
-      \noindent\kern3.9mm\lower.8mm\hbox{\gscop@progressbar{.4}}\kern.3mm%
-      \noindent\hfill{\bfseries\gscop@framenumber}\kern1mm%
+    \begin{beamercolorbox}[wd=\paperwidth,dp=.042\paperheight,ht=.018\paperheight]{page number in head/foot}%
+      \noindent\kern.031\paperwidth\lower.009\paperheight\hbox{\gscop@progressbar{.4}}%
+      \kern.002\paperheight%
+      \noindent\hfill{\bfseries\gscop@framenumber}\kern.008\paperwidth%
     \end{beamercolorbox}
   }%
 \else\def\gscop@tmpa{fancy}\ifx\gscop@options@footline\gscop@tmpa%%
   % fancy!
   \setbeamertemplate{footline}{%
-    \begin{beamercolorbox}[wd=\paperwidth,dp=4mm,ht=1.7mm]{}%
-      \noindent\kern3.9mm\lower.8mm\hbox{\gscop@progressbar{.4}}\kern.3mm%
+    \begin{beamercolorbox}[wd=\paperwidth,dp=.042\paperheight,ht=.018\paperheight]{}%
+      \noindent\kern.031\paperwidth\lower.009\paperheight\hbox{\gscop@progressbar{.4}}%
+      \kern.002\paperwidth%
       \noindent%
-      \ifx\beamer@shortauthor\empty\else{\usebeamercolor[fg]{author in head/foot}\insertshortauthor\ -- }\fi%
+      \ifx\beamer@shortauthor\empty%
+      \else{\usebeamercolor[fg]{author in head/foot}\insertshortauthor\ -- }\fi%
       {\usebeamercolor[fg]{title in head/foot}\textit{\insertshorttitle}}\hfill%
-      \hbox to 8mm{\hfill\bfseries\usebeamercolor[fg]{page number in head/foot}\gscop@framenumber}\kern1mm%
+      \hbox to .063\paperwidth{\hfill\bfseries\usebeamercolor[fg]{page number in head/foot}\gscop@framenumber}\kern.008\paperwidth%
     \end{beamercolorbox}%
   }%
 \else%
   % simple (default)
   \setbeamertemplate{footline}{%
-    \begin{beamercolorbox}[wd=\paperwidth,dp=4mm,ht=1.7mm]{page number in head/foot}%
-      \noindent\kern3.9mm\lower.8mm\hbox{\gscop@progressbar{.4}}\kern.3mm%
-      \noindent\hfill{\bfseries\gscop@framenumber}\kern1mm%
+    \begin{beamercolorbox}[wd=\paperwidth,dp=.042\paperheight,ht=.018\paperheight]{page number in head/foot}%
+      \noindent\kern.031\paperwidth\lower.009\paperheight\hbox{\gscop@progressbar{.4}}%
+      \kern.002\paperwidth%
+      \noindent\hfill{\bfseries\gscop@framenumber}\kern.008\paperwidth%
     \end{beamercolorbox}
   }%
 \fi\fi\fi
