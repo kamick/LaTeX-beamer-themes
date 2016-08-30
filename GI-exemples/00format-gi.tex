@@ -391,6 +391,28 @@
   jamais.> 
 }
 
+
+% -----------------------------------------------------------------------------
+\frame{%
+  \frametitle{Format des diapos}
+
+  Le thème est compatible avec l'option \option{aspectratio} de beamer~:
+
+  \noindent
+  \includegraphics[width=.32\textwidth]{Img/zz24}%169
+  \hfill
+  \includegraphics[width=.32\textwidth]{Img/zz26}%141
+  \hfill
+  \includegraphics[width=.32\textwidth]{Img/zz29}%32
+
+  aspectratio=169
+  \hfill
+  aspectratio=141
+  \hfill
+  aspectratio=32
+  \goodbreak
+}
+
 \frame{
   \centering
   \quote Alexandre Soljenitsyne:Le pavillon des cancéreux<Le sot aime à faire la leçon, le malin préfère la recevoir.>
@@ -422,51 +444,51 @@
 }
 
 
-\subsection[Tailles]{Exemples de choix de tailles de diapos}
-\def\x#1#2#3{%
-  \centering
-  \begin{exampleblock}{}\scriptsize
-    \string\documentclass[aspectratio=\alert{#3}]\string{beamer\string}%
-    \string\usetheme[\alert{#2}]\string{GSCOP\string}%
-  \end{exampleblock}
-  \includegraphics[height=.7\textheight]{Img/zz#1}%
-  \goodbreak
+% \subsection[Tailles]{Exemples de choix de tailles de diapos}
+% \def\x#1#2#3{%
+%   \centering
+%   \begin{exampleblock}{}\scriptsize
+%     \string\documentclass[aspectratio=\alert{#3}]\string{beamer\string}%
+%     \string\usetheme[\alert{#2}]\string{GSCOP\string}%
+%   \end{exampleblock}
+%   \includegraphics[height=.7\textheight]{Img/zz#1}%
+%   \goodbreak
   
-}
-\frame[b,allowframebreaks]{
-  \x{9}{none,progressbar=yes}{1610}
-  \x{10}{none,progressbar=yes}{169}
-  \x{11}{none,progressbar=yes}{149}
-  \x{12}{none,progressbar=yes}{141}
-  \x{13}{none,progressbar=yes}{54}
-  \x{14}{none,progressbar=yes}{43}
-  \x{15}{none,progressbar=yes}{32}
+% }
+% \frame[b,allowframebreaks]{
+%   \x{9}{none,progressbar=yes}{1610}
+%   \x{10}{none,progressbar=yes}{169}
+%   \x{11}{none,progressbar=yes}{149}
+%   \x{12}{none,progressbar=yes}{141}
+%   \x{13}{none,progressbar=yes}{54}
+%   \x{14}{none,progressbar=yes}{43}
+%   \x{15}{none,progressbar=yes}{32}
 
-  \x{16}{plain,progressbar=yes}{1610}
-  \x{17}{plain,progressbar=yes}{169}
-  \x{18}{plain,progressbar=yes}{149}
-  \x{19}{plain,progressbar=yes}{141}
-  \x{20}{plain,progressbar=yes}{54}
-  \x{21}{plain,progressbar=yes}{43}
-  \x{22}{plain,progressbar=yes}{32}
+%   \x{16}{plain,progressbar=yes}{1610}
+%   \x{17}{plain,progressbar=yes}{169}
+%   \x{18}{plain,progressbar=yes}{149}
+%   \x{19}{plain,progressbar=yes}{141}
+%   \x{20}{plain,progressbar=yes}{54}
+%   \x{21}{plain,progressbar=yes}{43}
+%   \x{22}{plain,progressbar=yes}{32}
 
 
-  \x{23}{simple,progressbar=yes}{1610}
-  \x{24}{simple,progressbar=yes}{169}
-  \x{25}{simple,progressbar=yes}{149}
-  \x{26}{simple,progressbar=yes}{141}
-  \x{27}{simple,progressbar=yes}{54}
-  \x{28}{simple,progressbar=yes}{43}
-  \x{29}{simple,progressbar=yes}{32}
+%   \x{23}{simple,progressbar=yes}{1610}
+%   \x{24}{simple,progressbar=yes}{169}
+%   \x{25}{simple,progressbar=yes}{149}
+%   \x{26}{simple,progressbar=yes}{141}
+%   \x{27}{simple,progressbar=yes}{54}
+%   \x{28}{simple,progressbar=yes}{43}
+%   \x{29}{simple,progressbar=yes}{32}
 
-  \x{30}{fancy,progressbar=yes}{1610}
-  \x{31}{fancy,progressbar=yes}{169}
-  \x{32}{fancy,progressbar=yes}{149}
-  \x{33}{fancy,progressbar=yes}{141}
-  \x{34}{fancy,progressbar=yes}{54}
-  \x{35}{fancy,progressbar=yes}{43}
-  \x{36}{fancy,progressbar=yes}{32}
-}
+%   \x{30}{fancy,progressbar=yes}{1610}
+%   \x{31}{fancy,progressbar=yes}{169}
+%   \x{32}{fancy,progressbar=yes}{149}
+%   \x{33}{fancy,progressbar=yes}{141}
+%   \x{34}{fancy,progressbar=yes}{54}
+%   \x{35}{fancy,progressbar=yes}{43}
+%   \x{36}{fancy,progressbar=yes}{32}
+% }
 
 
 
