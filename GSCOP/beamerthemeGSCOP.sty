@@ -1,5 +1,5 @@
 %%% LaTeX-beamer theme for G-SCOP presentations
-%%% (c) Pierre Lemaire, 2015, 2016.
+%%% (c) Pierre Lemaire, 2015, 2016, 2017.
 %%% Released under license CC-BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
 %%% Logos and images may be copyrighted. Design based from the PPT presentation by someone from G-SCOP...
 %%%
@@ -8,7 +8,7 @@
 %% ===========================================================================
 \NeedsTeXFormat{LaTeX2e}%
 \ProvidesPackage{beamerthemeGSCOP}
-[2016/07/23. Beamer-style for GSCOP]
+[2017/05/22. Beamer-style for GSCOP]
 
 %% ===========================================================================
 %% ==== options ==============================================================
@@ -223,7 +223,7 @@
 \else\def\gscop@tmpa{fancy}\ifx\gscop@options@footline\gscop@tmpa%%
   % fancy!
   \setbeamertemplate{footline}{%
-    \begin{beamercolorbox}[wd=\paperwidth,dp=.066\paperheight,ht=0.18\paperheight]{}%
+    \begin{beamercolorbox}[wd=\paperwidth,dp=.066\paperheight,ht=0.018\paperheight]{}%
       \noindent\kern.023\paperwidth\hrulefill\kern.004\paperwidth\par\kern.002\paperheight\par%
       \noindent\kern.022\paperwidth\lower.007\paperheight\hbox{\gscop@progressbar{.8}}\kern.002\paperwidth%
       \noindent\kern.023\paperwidth%
@@ -265,8 +265,10 @@
   % fancy
   \AtBeginSection{%
     \frame{%
-      \hfill\textbf{\LARGE\usebeamercolor[fg]{title}\thesection.~\insertsection}\hfill\null\par%
-      \noindent\kern-.78\paperwidth\pgfuseimage{gscop@rule}\par%
+      \begin{center}
+        \textbf{\LARGE\usebeamercolor[fg]{title}\thesection.~\insertsection}\par%
+      \end{center}
+      \noindent\kern-.078\paperwidth\pgfuseimage{gscop@rule}%
       \vfill\par%
       \tableofcontents[sectionstyle=hide,subsectionstyle=show/show/hide]%
     }%
@@ -274,8 +276,10 @@
   \AtBeginSubsection{%
     \ifnum\thesubsection>1%
     \frame{%
-      \hfill\textbf{\LARGE\usebeamercolor[fg]{title}\thesection.~\insertsection}\hfill\null\par%
-      \noindent\kern-.78\paperwidth\pgfuseimage{gscop@rule}\par%
+      \begin{center}
+        \textbf{\LARGE\usebeamercolor[fg]{title}\thesection.~\insertsection}%
+      \end{center}
+      \noindent\kern-.078\paperwidth\pgfuseimage{gscop@rule}\par%
       \vfill\par%
       \tableofcontents[sectionstyle=hide,subsectionstyle=show/shaded/hide]%
     }%
