@@ -269,8 +269,10 @@
   % fancy
   \AtBeginSection{%
     \frame{%
-      \hfill\textbf{\LARGE\usebeamercolor[fg]{title}\thesection.~\insertsection}\hfill\null\par%
-      \noindent\hfill\pgfuseimage{gscop@rule}\hfill\par%
+      \begin{center}
+        \textbf{\LARGE\usebeamercolor[fg]{title}\thesection.~\insertsection}\par%
+        \pgfuseimage{gscop@rule}\par%
+      \end{center}
       \vfill\par%
       \tableofcontents[sectionstyle=hide,subsectionstyle=show/show/hide]%
     }%
@@ -278,8 +280,10 @@
   \AtBeginSubsection{%
     \ifnum\thesubsection>1%
     \frame{%
-      \hfill\textbf{\LARGE\usebeamercolor[fg]{title}\thesection.~\insertsection}\hfill\null\par%
-      \noindent\hfill\pgfuseimage{gscop@rule}\hfill\par%
+      \begin{center}
+        \textbf{\LARGE\usebeamercolor[fg]{title}\thesection.~\insertsection}\par%
+        \pgfuseimage{gscop@rule}%
+      \end{center}
       \vfill\par%
       \tableofcontents[sectionstyle=hide,subsectionstyle=show/shaded/hide]%
     }%
