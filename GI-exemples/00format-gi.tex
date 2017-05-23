@@ -1,5 +1,5 @@
 %%% Example of a presentation using LaTeX-beamer theme for GI
-%%% (c) Pierre Lemaire, 2015, 2016.
+%%% (c) Pierre Lemaire, 2015, 2016, 2017.
 %%% Released under license CC-BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
 %%% Logos and images may be copyrighted. 
 
@@ -11,17 +11,19 @@
 \usepackage{pgfpages}
 \usepackage{amsbsy} % bold math symbols
 
-\usetheme[simple,itemshape=square,progressbar=yes]{GI}
+\usetheme[fancy,itemshape=square,progressbar=yes]{GI}
 
 \def\option#1{\texttt{\usebeamercolor[fg]{example text}#1}}%
 \def\quote#1:#2<#3>{#3\par\bigskip\textit{\alert{\textbf{#1}}}
   \textit{\usebeamercolor[fg]{example text} #2}}
 
+\pgfdeclareimage[height=2.5mm]{cc-nc-sa}{cc-by-nc-sa.png}%
+\def\cc{\lower.2em\hbox{\href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{\pgfuseimage{cc-nc-sa}}}}
 
 % === document info ===========================================================
 \title[Format \LaTeX\ GI]{Format \LaTeX-beamer pour GI}%
 \subtitle{(exemple d'utilisation)}
-\author[]{Pierre Lemaire}%
+\author[\cc\ P. Lemaire, GI-1A, 2016--2017]{Pierre Lemaire}%
 \institute{Grenoble INP - Génie Industriel}
 \date{juin 2016}%
 \subject{présentation \LaTeX}
