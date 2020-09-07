@@ -1,0 +1,395 @@
+%%% LaTeX-beamer theme for GI (Grenoble INP - Génie Industriel) presentations
+%%% (c) Pierre Lemaire, 2015, 2016, 2017.
+%%% Released under license CC-BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+%%% Logos and images may be copyrighted. Design based from the PPT presentation by someone from GI...
+%%%
+%%% Thanks to F. Thiard for early testing and comments.
+%%% Thanks to F. Mangione for suggestions
+%% ===========================================================================
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{beamerthemeGI}
+[2020/09/07. Beamer-style for GI]
+
+%% ===========================================================================
+%% ==== options ==============================================================
+
+\RequirePackage{tikz}
+\RequirePackage{etoolbox}
+
+\DeclareOptionBeamer{titlepage}[auto]{\def\gi@options@titlepage{#1}}    % auto, none
+\DeclareOptionBeamer{toc}[fancy]{\def\gi@options@toc{#1}}               % simple, none, plain, fancy
+\DeclareOptionBeamer{headline}[fancy]{\def\gi@options@headline{#1}}     % simple, none, plain, fancy
+\DeclareOptionBeamer{footline}[fancy]{\def\gi@options@footline{#1}}     % simple, none, plain, fancy
+\DeclareOptionBeamer{progressbar}[no]{\def\gi@options@progressbar{#1}}  % no, yes
+\DeclareOptionBeamer{itemshape}[ball]{\def\gi@options@itemshape{#1}}    % default, ball, circle, square
+\DeclareOptionBeamer{colorstyle}[fancy]{\def\gi@options@colorstyle{#1}} % simple, plain, fancy
+\DeclareOptionBeamer{framecount}[fancy]{\def\gi@options@framecount{#1}} % none, plain, simple, fancy
+
+\DeclareOptionBeamer{none}{  \ExecuteOptionsBeamer{titlepage=auto, toc=none,   headline=none,   footline=none,   colorstyle=plain,  framecount=none, progressbar=no}}%
+\DeclareOptionBeamer{plain}{ \ExecuteOptionsBeamer{titlepage=auto, toc=plain,  headline=plain,  footline=plain,  colorstyle=plain,  framecount=plain, progressbar=no}}%
+\DeclareOptionBeamer{simple}{\ExecuteOptionsBeamer{titlepage=auto, toc=simple, headline=simple, footline=simple, colorstyle=simple, framecount=simple, progressbar=no}}%
+\DeclareOptionBeamer{fancy}{ \ExecuteOptionsBeamer{titlepage=auto, toc=fancy,  headline=fancy,  footline=fancy,  colorstyle=fancy,  framecount=fancy, progressbar=no}}%
+
+\ExecuteOptionsBeamer{fancy,itemshape=balls} % default format
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+% --- auxilary variables and counters
+\def\gi@tmpa{}     % auxiliary value
+\newcount\gi@counta% auxiliary counter
+\newcount\gi@countb% auxiliary counter
+\newdimen\gi@dima  % auxiliary dimension
+\newdimen\gi@dimb  % auxiliary dimension
+
+% --- margins
+\setbeamersize{text margin left=1cm}
+\setbeamersize{text margin right=1cm}
+
+%% ===========================================================================
+%% ==== inner theme ==========================================================
+
+
+%% background images (title page and other pages):
+\pgfdeclareimage[height=1.003\paperheight,width=1.003\paperwidth]{gi@bckgrd0}{bckgrd0}%
+\pgfdeclareimage[height=1.003\paperheight,width=1.003\paperwidth]{gi@bckgrd1}{bckgrd1}%
+\pgfdeclareimage[width=\textwidth]{gi@rule}{bckgrd2}%
+
+\setbeamertemplate{background canvas}{%
+    \ifnum\c@framenumber=0%
+      \pgfuseimage{gi@bckgrd0}%
+    \else%
+      \pgfuseimage{gi@bckgrd1}%
+    \fi%
+}
+
+%% title page:
+\setbeamertemplate{title page}{
+  \setcounter{framenumber}{0}% frame are numbered from 0 (if changed, update \setbeamertemplate{background canvas)
+  \begin{center}
+    \kern.20\paperheight%
+    \vbox to .5\paperheight{
+      \vfill%
+      {\Large\bfseries\usebeamercolor[fg]{title}\inserttitle}%
+      \par%
+      {\large\itshape\usebeamercolor[fg]{subtitle}\insertsubtitle}%
+      \vfill%
+      \noindent\pgfuseimage{gi@rule}%
+      \vfill%
+      {\large\usebeamercolor[fg]{author}\insertauthor}\par%
+      {\tiny\usebeamercolor[fg]{institute}\insertinstitute}\par%
+      \vfill%
+      {\normalsize\usebeamercolor[fg]{date}\insertdate}%
+      \vfill%
+    }%
+  \end{center}
+}
+
+%% default configuration for various objects:
+\beamertemplatenavigationsymbolsempty
+\beamertemplateballitem %% itemize
+\setbeamertemplate{blocks}[rounded][shadow=true] %% block
+\beamertemplatebookbibitems %% bibliography
+\setbeamertemplate{sections/subsections in toc}[\gi@options@itemshape] %% toc
+\setbeamertemplate{sections/subsections in toc shaded}[default][40] %% toc
+
+\def\footnotesep{0mm}% vertical space before each footnote
+\setbeamerfont{footnote}{size=\tiny}% footnote font
+
+\setbeamertemplate{itemize items}[\gi@options@itemshape]     % balls, circle, square, default (triangle)
+\setbeamertemplate{enumerate items}[\gi@options@itemshape]   % balls, circle, square, default
+
+%% nothing set for: part page, description, theorem and proof, figures and tables
+
+%% =============================================================================
+%% ==== outer theme ============================================================
+
+%% frame title
+\setbeamertemplate{frametitle}{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0mm,dp=0mm,right]{frametile}%
+    \bfseries\Large\insertframetitle\kern.039\paperwidth%
+  \end{beamercolorbox}%
+}
+
+%% frame title continuation count (when 'allowframebreaks')
+\setbeamertemplate{frametitle continuation}{(\insertcontinuationcount)}% 
+
+
+%% headline!
+\def\gi@tmpa{none}\ifx\gi@options@headline\gi@tmpa%
+  % none!
+  \setbeamertemplate{headline}{\kern.052\paperheight}%
+\else\def\gi@tmpa{plain}\ifx\gi@options@headline\gi@tmpa%
+  % plain!
+  \setbeamertemplate{headline}{%
+    \kern.054\paperheight%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0mm,dp=0mm]{section in head/foot}
+      \noindent\hfill\insertsectionnavigationhorizontal{.7\paperwidth}{}{}%
+    \end{beamercolorbox}%
+    \kern.039\paperheight%
+  }%
+\else\def\gi@tmpa{fancy}\ifx\gi@options@headline\gi@tmpa%
+  % fancy !
+  \setbeamertemplate{headline}{%
+    \kern.054\paperheight%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0mm,dp=0mm]{section in head/foot}
+      \noindent\hfill\insertnavigation{.7\paperwidth}%
+    \end{beamercolorbox}%
+    \kern.039\paperheight%
+  }%
+\else
+  % simple ! (default)
+  \setbeamertemplate{headline}{%
+    \kern.054\paperheight%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0mm,dp=0mm]{section in head/foot}
+      \hbox to .6\textwidth{\hfill\textbf{\insertsection}~|~}%
+      \insertsubsectionnavigationhorizontal{.4\textwidth}{}{\kern.039\paperwidth}%
+    \end{beamercolorbox}%
+    \kern.039\paperheight%
+  }%
+\fi\fi\fi
+
+
+
+
+%% adds-on for footline: generic progressbar
+\def\gi@tmpa{no}\ifx\gi@options@progressbar\gi@tmpa%
+  % no progressbar
+  \def\gi@progressbar#1{\vrule width 0pt height 3ex}% same height as progress bar, for uniform formatting
+\else\def\gi@tmpa{large}\ifx\gi@options@progressbar\gi@tmpa%
+  % large progressbar
+  \def\gi@progressbar#1{%
+    \gi@dima=\paperwidth \advance\gi@dima by -.035\paperwidth% max width
+    \gi@dimb=\gi@dima% current with
+    % compute progress actual bar width
+    \ifnum\insertframenumber>\gi@totalframenumber\gi@counta=\gi@totalframenumber\else\gi@counta=\insertframenumber\fi%
+    \multiply\gi@dimb by \gi@counta  
+    \gi@counta=\gi@totalframenumber 
+    \divide\gi@dimb by \gi@counta
+    % draw progress bar
+    \begin{tikzpicture}%[rounded corners=1.5pt,very thin]
+      \draw[draw opacity=0](0pt, 0pt) rectangle ++ (\gi@dima, 3.4ex);
+      \fill[fill=structure.fg!60,fill opacity=#1] (0pt, .4ex) rectangle ++ (\gi@dimb, 3.4ex);
+    \end{tikzpicture}%
+    \kern-\gi@dima%
+  }%
+\else%
+  % thin progressbar
+  \def\gi@progressbar#1{%
+    \gi@dima=\paperwidth \advance\gi@dima by -.035\paperwidth% max width
+    \gi@dimb=\gi@dima% current with
+    % compute progress actual bar width
+    \ifnum\insertframenumber>\gi@totalframenumber\gi@counta=\gi@totalframenumber\else\gi@counta=\insertframenumber\fi%
+    \multiply\gi@dimb by \gi@counta  
+    \gi@counta=\gi@totalframenumber 
+    \divide\gi@dimb by \gi@counta
+    % draw progress bar
+    \begin{tikzpicture}%
+      \draw[draw opacity=0](0pt, 0pt) rectangle ++ (\gi@dima, 1pt);
+      \fill[fill=white,fill opacity=#1] (0pt, 0pt) rectangle ++ (\gi@dimb, 1pt);
+    \end{tikzpicture}%
+    \kern-\gi@dima%
+  }%
+\fi\fi%
+
+%% a white bar to hide background under the footline
+\def\gi@hidebar{%
+    \gi@dima=\paperwidth \advance\gi@dima by -.038\paperwidth% max width
+    \begin{tikzpicture}%
+      \fill[fill=gi@bluebar,fill opacity=1](0pt, 0pt) rectangle ++ (\gi@dima, 3ex);%
+    \end{tikzpicture}%
+    \kern-\gi@dima%
+}
+
+%% frame number:
+
+\def\gi@totalframenumber{\inserttotalframenumber}%  default number of frames
+\def\lastframe{%
+  \immediate\write\@auxout{\noexpand\gdef\noexpand\gi@totalframenumber{\the\c@framenumber}}%
+  \def\gi@tmpa{none}\ifx\gi@options@framecount\gi@tmpa%
+    % none!
+    \def\gi@framenumber{}%
+  \else%
+    \def\gi@framenumber{(\insertframenumber)}%
+  \fi%
+}%
+
+% frame number formatting:
+\def\gi@tmpa{none}\ifx\gi@options@framecount\gi@tmpa%
+  % none!
+  \def\gi@framenumber{}%
+\else\def\gi@tmpa{plain}\ifx\gi@options@framecount\gi@tmpa%
+  % plain!
+  \def\gi@framenumber{\insertframenumber}%
+\else\def\gi@tmpa{fancy}\ifx\gi@options@framecount\gi@tmpa%
+  % fancy!
+  \def\gi@framenumber{\insertframenumber/\gi@totalframenumber}%
+\else%
+  % simple!
+  \def\gi@framenumber{\insertframenumber/\gi@totalframenumber}%
+\fi\fi\fi%
+
+
+%% footline:
+\def\gi@tmpa{none}\ifx\gi@options@footline\gi@tmpa%
+  % none!
+  \setbeamertemplate{footline}{%
+    \begin{beamercolorbox}[wd=\paperwidth,dp=.028\paperheight,ht=.019\paperheight]{}%
+      \noindent\kern.018\paperwidth\lower.015\paperheight\hbox{\gi@progressbar{.4}}%
+    \end{beamercolorbox}
+  }%
+\else\def\gi@tmpa{plain}\ifx\gi@options@footline\gi@tmpa%
+  % plain!
+  \setbeamertemplate{footline}{%
+    \begin{beamercolorbox}[wd=\paperwidth,dp=.028\paperheight,ht=.019\paperheight]{page number in head/foot}%
+      \noindent\kern.018\paperwidth\lower.015\paperheight\hbox{\gi@progressbar{.4}}%
+      \noindent\hfill{\bfseries\gi@framenumber}\kern.018\paperwidth%
+    \end{beamercolorbox}
+  }%
+\else\def\gi@tmpa{fancy}\ifx\gi@options@footline\gi@tmpa%%
+  % fancy!
+  \setbeamertemplate{footline}{%
+    \begin{beamercolorbox}[wd=\paperwidth,dp=.028\paperheight,ht=.019\paperheight]{}%
+      \noindent\kern.020\paperwidth\lower.01\paperheight\hbox{\gi@hidebar}%
+      \kern-0.002\paperwidth\lower.015\paperheight\hbox{\gi@progressbar{.4}}%
+      \kern.002\paperwidth%
+      \ifx\beamer@shortauthor\empty%
+      \else{\usebeamercolor[fg]{author in head/foot}\hbox to 0pt{\insertshortauthor\hss}}\fi%
+      \hfill{\usebeamercolor[fg]{title in head/foot}\textit{\insertshorttitle}}\hfill%
+      \hbox to .063\paperwidth{\hfill\bfseries\usebeamercolor[fg]{page number in head/foot}\gi@framenumber}\kern.018\paperwidth%
+    \end{beamercolorbox}%
+  }%
+\else%
+  % simple (default)
+  \setbeamertemplate{footline}{%
+    \begin{beamercolorbox}[wd=\paperwidth,dp=.028\paperheight,ht=.019\paperheight]{page number in head/foot}%
+      \noindent\kern.018\paperwidth\lower.015\paperheight\hbox{\gi@progressbar{.4}}%
+      \noindent\hfill{\bfseries\gi@framenumber}\kern.018\paperwidth%
+    \end{beamercolorbox}
+  }%
+\fi\fi\fi
+
+
+%% ===========================================================================
+%% ==== automated behaviors ==================================================
+
+%% optional title page at beginning
+\def\gi@tmpa{none}
+\ifx\gi@options@titlepage\gi@tmpa%
+\else%
+  \AtBeginDocument{%
+    \frame[t,plain]{\titlepage}%
+  }
+\fi%
+
+%% automated TOC
+\def\gi@tmpa{none}\ifx\gi@options@toc\gi@tmpa%
+  % none!
+\else\def\gi@tmpa{plain}\ifx\gi@options@toc\gi@tmpa%
+  % plain!
+  \AtBeginSection{\frame{\tableofcontents[sectionstyle=show/shaded,subsectionstyle=hide/hide/hide]}}
+\else\def\gi@tmpa{fancy}\ifx\gi@options@toc\gi@tmpa%
+  % fancy
+  %\AtBeginSection{%
+  %  \frame{%
+  %    \begin{center}
+  %      \textbf{\LARGE\usebeamercolor[fg]{title}\thesection.~\insertsection}\par%
+  %      \pgfuseimage{gi@rule}\par%
+  %    \end{center}
+  %    \vfill\par%
+  %    \tableofcontents[sectionstyle=hide,subsectionstyle=show/show/hide]%
+  %  }%
+  %}%
+  \AtBeginSubsection{%
+    \ifnum\thesubsection>0%OLD: 1
+    \frame{%
+      \begin{center}
+        \textbf{\LARGE\usebeamercolor[fg]{title}\thesection.~\insertsection}\par%
+        \pgfuseimage{gi@rule}%
+      \end{center}
+      \vfill\par%
+      \tableofcontents[sectionstyle=hide,subsectionstyle=show/shaded/hide]%
+    }%
+    \fi%
+  }%
+\else
+  % simple (default)
+  \AtBeginSection{\frame{\tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/show/hide]}}
+\fi\fi\fi
+
+%% =============================================================================
+%% ==== color theme ============================================================
+
+\def\gi@tmpa{plain}\ifx\gi@options@colorstyle\gi@tmpa%
+  % plain!
+  \definecolor{gi@structure}{rgb}{0,0,0}
+  \definecolor{gi@normaltext}{rgb}{0,0,0}
+\else\def\gi@tmpa{simple}\ifx\gi@options@colorstyle\gi@tmpa%
+  % simple!
+  \definecolor{gi@structure}{rgb}{0,0.55,0.86}% blue
+  \definecolor{gi@normaltext}{rgb}{0,0,0}
+\else%
+  % fancy!
+  \definecolor{gi@structure}{rgb}{0,0.55,0.86}% blue
+  \definecolor{gi@normaltext}{rgb}{0,0.55,0.86}% blue
+  \definecolor{gi@bluebar}{RGB}{0,119,170}% dark blue
+\fi\fi%
+
+% --- base colors
+\setbeamercolor{structure}{fg=gi@structure}
+\setbeamercolor{normal text}{fg=gi@normaltext,bg=white}
+\setbeamercolor{alerted text}{fg=blue!20!red}
+\setbeamercolor{example text}{fg=gi@structure!50!green}
+
+% --- palette
+\setbeamercolor*{palette primary}{use=structure,   fg=structure.fg}
+\setbeamercolor*{palette secondary}{use=structure, fg=structure.fg!75!black!75}
+\setbeamercolor*{palette tertiary}{use=structure,  fg=structure.fg!50!black!50}
+\setbeamercolor*{palette quaternary}{use=structure,fg=structure.fg!25!gray!50}
+
+% --- titles, and titlepage fields
+\setbeamercolor*{titlelike}{parent=palette primary}
+\setbeamercolor*{title}{parent=titlelike}
+\setbeamercolor*{subtitle}{parent=palette secondary}
+\setbeamercolor*{author}{parent=palette primary}
+\setbeamercolor*{institute}{parent=palette secondary}
+\setbeamercolor*{date}{parent=palette primary}
+
+\setbeamercolor*{frametitle}{parent=titlelike}
+\setbeamercolor*{framesubtitle}{parent=frametitle}
+
+% --- head/foot
+\setbeamercolor*{section in head/foot}{parent=palette secondary}
+\setbeamercolor*{subsection in head/foot}{parent=palette tertiary}
+\setbeamercolor*{title in head/foot}{parent=palette secondary,       fg=structure.fg!60!white!50}
+\setbeamercolor*{author in head/foot}{parent=palette secondary,      fg=structure.fg!60!white!50}
+\setbeamercolor*{page number in head/foot}{parent=palette secondary, fg=structure.fg!60!white!50}
+
+% --- toc
+\setbeamercolor{section in toc}{parent=palette primary}
+\setbeamercolor{section in toc shaded}{parent=section in toc}
+\setbeamercolor{subsection in toc}{parent=palette secondary}
+\setbeamercolor{subsection in toc shaded}{parent=subsection in toc}
+
+% --- blocks
+
+\setbeamercolor{block title}{fg=white,bg=blue!61!green!96}
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!10!bg}
+
+\setbeamercolor{block title alerted}{use=alerted text,fg=white,bg=alerted text.fg!75!black}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!10!bg}
+
+\setbeamercolor{block title example}{use=example text,fg=white,bg=example text.fg!75!black}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!17!bg}
+
+% --- footnote
+\setbeamercolor*{footnote}{parent=palette secondary}
+
+% %% for additional colors, see
+% %% /usr/share/texmf/tex/latex/beamer/themes/color/beamercolorthemedefault.sty
+
+\setbeamercolor*{debug}{bg=gray, fg=purple}
+
+\mode<all>
+
+
