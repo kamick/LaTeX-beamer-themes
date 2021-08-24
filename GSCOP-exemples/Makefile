@@ -8,6 +8,8 @@ default: 00format-gscop.pdf 01mapsp2015-lemaire.pdf clean
 .PHONY: clean
 
 clean:
-	$(RM) *.toc *.log *.nav *.out *.aux *.snm
+	$(RM) *.log *.dvi *.out *.aux *.toc *.nav *.snm *.lof *.synctex.* *.ans
 
+cleaner: clean
+	$(RM) -r auto *~ 00format-gscop.pdf 01mapsp2015-lemaire.pdf
 

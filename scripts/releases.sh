@@ -17,12 +17,12 @@ cd -
 
 # GI
 cd ../GI
-zip -9 gi-theme.zip *.{pdf,sty}
+zip -9 gi-theme.zip *.{pdf,png,sty}
 mv gi-theme.zip ../scripts/release
 cd -
 
 cd ../GI-exemples
-zip -9 gi-theme-exemples.zip *.{tex,pdf,sty} Img/*
+zip -9 gi-theme-exemples.zip *.{tex,pdf,png,sty} Img/*
 mv gi-theme-exemples.zip ../scripts/release
 cd -
 

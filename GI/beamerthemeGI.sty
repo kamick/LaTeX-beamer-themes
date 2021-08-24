@@ -58,12 +58,12 @@
 \ifthenelse{%
   \lengthtest{\beamer@paperwidth=16cm}}%
 {%16/9
-  \pgfdeclareimage[height=1.003\paperheight,width=1.003\paperwidth]{gi@bckgrd0}{bckgrd0-169}%
-  \pgfdeclareimage[height=1.003\paperheight,width=1.003\paperwidth]{gi@bckgrd1}{bckgrd1-169}%
+  \pgfdeclareimage[height=1.003\paperheight,width=1.003\paperwidth]{gi@bckgrd0}{bckgrd0-169_gi}%
+  \pgfdeclareimage[height=1.003\paperheight,width=1.003\paperwidth]{gi@bckgrd1}{bckgrd1-169_gi}%
 }%
 {%Other format
-  \pgfdeclareimage[height=1.003\paperheight,width=1.003\paperwidth]{gi@bckgrd0}{bckgrd0}%
-  \pgfdeclareimage[height=1.003\paperheight,width=1.003\paperwidth]{gi@bckgrd1}{bckgrd1}%
+  \pgfdeclareimage[height=1.003\paperheight,width=1.003\paperwidth]{gi@bckgrd0}{bckgrd0_gi}%
+  \pgfdeclareimage[height=1.003\paperheight,width=1.003\paperwidth]{gi@bckgrd1}{bckgrd1_gi}%
 }
 \setbeamertemplate{background canvas}{%
     \ifnum\c@framenumber=0%
@@ -73,7 +73,7 @@
     \fi%
 }
 \fi% bckgrd
-\pgfdeclareimage[width=\textwidth]{gi@rule}{bckgrd2}%
+\pgfdeclareimage[width=\textwidth]{gi@rule}{bckgrd2_gi}%
 
 %% title page:
 \setbeamertemplate{title page}{
