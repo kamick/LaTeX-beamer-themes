@@ -1,5 +1,5 @@
 %%% LaTeX-beamer theme for GI (Grenoble INP - Génie Industriel) presentations
-%%% (c) Pierre Lemaire, 2015, 2016, 2017.
+%%% (c) Pierre Lemaire, 2015, 2016, 2017, 2021
 %%% Released under license CC-BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
 %%% Logos and images may be copyrighted. Design based from the PPT presentation by someone from GI...
 %%%
@@ -8,13 +8,14 @@
 %% ===========================================================================
 \NeedsTeXFormat{LaTeX2e}%
 \ProvidesPackage{beamerthemeGI}
-[2020/09/07. Beamer-style for GI]
+[2021/08/24. Beamer-style for GI]
 
 %% ===========================================================================
 %% ==== options ==============================================================
 
 \RequirePackage{tikz}
 \RequirePackage{etoolbox}
+\RequirePackage{ifthen}
 
 \DeclareOptionBeamer{titlepage}[auto]{\def\gi@options@titlepage{#1}}    % auto, none
 \DeclareOptionBeamer{toc}[fancy]{\def\gi@options@toc{#1}}               % simple, none, plain, fancy
@@ -24,11 +25,13 @@
 \DeclareOptionBeamer{itemshape}[ball]{\def\gi@options@itemshape{#1}}    % default, ball, circle, square
 \DeclareOptionBeamer{colorstyle}[fancy]{\def\gi@options@colorstyle{#1}} % simple, plain, fancy
 \DeclareOptionBeamer{framecount}[fancy]{\def\gi@options@framecount{#1}} % none, plain, simple, fancy
+\DeclareOptionBeamer{bckgrd}[yes]{\def\gi@options@bckgrd{#1}}           % yes, no
 
-\DeclareOptionBeamer{none}{  \ExecuteOptionsBeamer{titlepage=auto, toc=none,   headline=none,   footline=none,   colorstyle=plain,  framecount=none, progressbar=no}}%
-\DeclareOptionBeamer{plain}{ \ExecuteOptionsBeamer{titlepage=auto, toc=plain,  headline=plain,  footline=plain,  colorstyle=plain,  framecount=plain, progressbar=no}}%
-\DeclareOptionBeamer{simple}{\ExecuteOptionsBeamer{titlepage=auto, toc=simple, headline=simple, footline=simple, colorstyle=simple, framecount=simple, progressbar=no}}%
-\DeclareOptionBeamer{fancy}{ \ExecuteOptionsBeamer{titlepage=auto, toc=fancy,  headline=fancy,  footline=fancy,  colorstyle=fancy,  framecount=fancy, progressbar=no}}%
+\DeclareOptionBeamer{none}{  \ExecuteOptionsBeamer{bckgrd=no,  titlepage=auto, toc=none,   headline=none,   footline=none,   colorstyle=plain,  framecount=none, progressbar=no}}%
+\DeclareOptionBeamer{bare}{  \ExecuteOptionsBeamer{bckgrd=yes, titlepage=auto, toc=none,   headline=none,   footline=none,   colorstyle=plain,  framecount=none, progressbar=no}}%
+\DeclareOptionBeamer{plain}{ \ExecuteOptionsBeamer{bckgrd=yes, titlepage=auto, toc=plain,  headline=plain,  footline=plain,  colorstyle=plain,  framecount=plain, progressbar=no}}%
+\DeclareOptionBeamer{simple}{\ExecuteOptionsBeamer{bckgrd=yes, titlepage=auto, toc=simple, headline=simple, footline=simple, colorstyle=simple, framecount=simple, progressbar=no}}%
+\DeclareOptionBeamer{fancy}{ \ExecuteOptionsBeamer{bckgrd=yes, titlepage=auto, toc=fancy,  headline=fancy,  footline=fancy,  colorstyle=fancy,  framecount=fancy, progressbar=no}}%
 
 \ExecuteOptionsBeamer{fancy,itemshape=balls} % default format
 \ProcessOptionsBeamer
@@ -49,12 +52,19 @@
 %% ===========================================================================
 %% ==== inner theme ==========================================================
 
-
 %% background images (title page and other pages):
-\pgfdeclareimage[height=1.003\paperheight,width=1.003\paperwidth]{gi@bckgrd0}{bckgrd0}%
-\pgfdeclareimage[height=1.003\paperheight,width=1.003\paperwidth]{gi@bckgrd1}{bckgrd1}%
-\pgfdeclareimage[width=\textwidth]{gi@rule}{bckgrd2}%
-
+\def\gi@tmpa{no}\ifx\gi@options@bckgrd\gi@tmpa% only include if bckgrd is not no
+\else%
+\ifthenelse{%
+  \lengthtest{\beamer@paperwidth=16cm}}%
+{%16/9
+  \pgfdeclareimage[height=1.003\paperheight,width=1.003\paperwidth]{gi@bckgrd0}{bckgrd0-169}%
+  \pgfdeclareimage[height=1.003\paperheight,width=1.003\paperwidth]{gi@bckgrd1}{bckgrd1-169}%
+}%
+{%Other format
+  \pgfdeclareimage[height=1.003\paperheight,width=1.003\paperwidth]{gi@bckgrd0}{bckgrd0}%
+  \pgfdeclareimage[height=1.003\paperheight,width=1.003\paperwidth]{gi@bckgrd1}{bckgrd1}%
+}
 \setbeamertemplate{background canvas}{%
     \ifnum\c@framenumber=0%
       \pgfuseimage{gi@bckgrd0}%
@@ -62,6 +72,8 @@
       \pgfuseimage{gi@bckgrd1}%
     \fi%
 }
+\fi% bckgrd
+\pgfdeclareimage[width=\textwidth]{gi@rule}{bckgrd2}%
 
 %% title page:
 \setbeamertemplate{title page}{
@@ -186,7 +198,7 @@
     % draw progress bar
     \begin{tikzpicture}%
       \draw[draw opacity=0](0pt, 0pt) rectangle ++ (\gi@dima, 1pt);
-      \fill[fill=white,fill opacity=#1] (0pt, 0pt) rectangle ++ (\gi@dimb, 1pt);
+      \fill[fill=gi@thinprogressbar,fill opacity=#1] (0pt, 0pt) rectangle ++ (\gi@dimb, 1pt);
     \end{tikzpicture}%
     \kern-\gi@dima%
   }%
@@ -334,6 +346,12 @@
   \definecolor{gi@normaltext}{rgb}{0,0.55,0.86}% blue
 \fi\fi%
 \definecolor{gi@bluebar}{RGB}{0,119,170}% dark blue
+
+\def\gi@tmpa{no}\ifx\gi@options@bckgrd\gi@tmpa%
+  \definecolor{gi@thinprogressbar}{rgb}{0.1,0.65,0.95}%
+\else%
+  \definecolor{gi@thinprogressbar}{rgb}{1,1,1}% white on background
+\fi%  
 
 % --- base colors
 \setbeamercolor{structure}{fg=gi@structure}

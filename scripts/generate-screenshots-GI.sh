@@ -12,11 +12,14 @@ cd $SRC
 
 #"plain" "simple,colorstyle=plain"
 for OPTIONS in \
-    "none" "plain" "simple" "fancy" \
-	   "plain,colorstyle=fancy" \
-	   "fancy,colorstyle=simple,progressbar=yes,framecount=plain" \
-	   "simple,headline=none,footline=plain,itemshape=square" \
-	   "none,progressbar=yes,colorstyle=fancy"
+    "bare" \
+        "plain" \
+        "simple" \
+        "fancy" \
+	"plain,colorstyle=fancy" \
+	"fancy,colorstyle=simple,progressbar=yes,framecount=plain" \
+	"simple,headline=none,footline=plain,itemshape=square" \
+	"none,colorstyle=fancy,footline=plain,framecount=plain,progressbar=yes"
 do
     N=$[ N + 1 ]
     echo -n "=== $N: $OPTIONS"
