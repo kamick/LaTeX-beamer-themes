@@ -53,3 +53,4 @@ cd -
 cp ../GSCOP-exemples/00format-gscop.pdf release/
 cp ../GI-exemples/00format-gi.pdf release/
 cp ../GI_v2019-exemples/00format-gi.pdf release/00format-gi2019.pdf
+cp ../GI_v2020-exemples/00format-gi.pdf release/00format-gi2020.pdf
