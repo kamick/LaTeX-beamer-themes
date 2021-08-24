@@ -26,6 +26,17 @@ zip -9 gi-theme-exemples.zip *.{tex,pdf,sty} Img/*
 mv gi-theme-exemples.zip ../scripts/release
 cd -
 
+# GI 2020
+cd ../GI_v2020
+zip -9 gi-theme.zip *.{pdf,sty}
+mv gi-theme.zip ../scripts/release/gi2020-theme.zip
+cd -
+
+cd ../GI_v2020-exemples
+zip -9 gi-theme-exemples.zip *.{tex,pdf,sty} Img/*
+mv gi-theme-exemples.zip ../scripts/release/gi2020-theme-exemples.zip
+cd -
+
 # GI 2019
 cd ../GI_v2019
 zip -9 gi-theme.zip *.{pdf,sty}

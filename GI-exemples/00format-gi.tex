@@ -1,5 +1,5 @@
 %%% Example of a presentation using LaTeX-beamer theme for GI
-%%% (c) Pierre Lemaire, 2015, 2016, 2017, 2020
+%%% (c) Pierre Lemaire, 2015, 2016, 2017, 2020, 2021
 %%% Released under license CC-BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
 %%% Logos and images may be copyrighted. 
 
@@ -14,6 +14,7 @@
 
 \usetheme[fancy,itemshape=square,progressbar=yes]{GI}
 %\usetheme[simple,progressbar=large]{GI}
+%\usetheme[none,colorstyle=fancy,footline=plain,framecount=plain,progressbar=yes]{GI}
 
 \def\option#1{\texttt{\usebeamercolor[fg]{example text}#1}}%
 \def\quote#1:#2<#3>{#3\par\bigskip\textit{\alert{\textbf{#1}}}
@@ -25,9 +26,9 @@
 % === document info ===========================================================
 \title[Format \LaTeX\ GI]{Format \LaTeX-beamer pour GI}%
 \subtitle{(exemple d'utilisation)}
-\author[\cc\ P. Lemaire, GI-1A, 2016--2020]{Pierre Lemaire}%
+\author[\cc\ P. Lemaire, GI, 2016--2021]{Pierre Lemaire}%
 \institute{Grenoble INP - Génie Industriel}
-\date{sept. 2020}%
+\date{sept. 2021}%
 \subject{présentation \LaTeX}
 \keywords{format,beamer,\LaTeX}
 
@@ -93,7 +94,8 @@
 \frame{%
   \frametitle{Paramètres généraux}
   \begin{itemize}
-  \item \option{none}~:   toutes les options à \option{none}
+  \item \option{none}~:   toutes les options à \option{none} et pas de fond
+  \item \option{bare}~:   toutes les options à \option{none}
   \item \option{plain}~:  toutes les options à \option{plain}
   \item \option{simple}~: toutes les options à \option{simple}
   \item \option{fancy}~:  toutes les options à \option{fancy}
@@ -153,7 +155,7 @@
 \frame{%
   \frametitle{Formes et couleurs}
   \begin{itemize}
-  \item \option{colormode}~: couleurs du texte et des titres
+  \item \option{colorstyle}~: couleurs du texte et des titres
     \begin{itemize}
     \item \option{plain}~: couleur de base noire
     \item \option{simple}~: couleur de base noire, bleue pour les titres
@@ -438,64 +440,20 @@
   
 }
 \frame[b,allowframebreaks]{
-  \x{1}{none}
+  \x{1}{bare}
   \x{2}{plain}
   \x{3}{simple}
   \x{4}{fancy}
   \x{5}{plain,colorstyle=fancy}
   \x{6}{fancy,colorstyle=simple,progressbar=yes,framecount=plain}
   \x{7}{simple,headline=none,footline=plain,itemshape=square}
-  \x{8}{none,progressbar=yes,colorstyle=fancy}
+  \x{8}{none,colorstyle=fancy,footline=plain,framecount=plain,progressbar=yes}
 }
-
-
-% \subsection[Tailles]{Exemples de choix de tailles de diapos}
-% \def\x#1#2#3{%
-%   \centering
-%   \begin{exampleblock}{}\scriptsize
-%     \string\documentclass[aspectratio=\alert{#3}]\string{beamer\string}%
-%     \string\usetheme[\alert{#2}]\string{GSCOP\string}%
-%   \end{exampleblock}
-%   \includegraphics[height=.7\textheight]{Img/zz#1}%
-%   \goodbreak
-  
-% }
-% \frame[b,allowframebreaks]{
-%   \x{9}{none,progressbar=yes}{1610}
-%   \x{10}{none,progressbar=yes}{169}
-%   \x{11}{none,progressbar=yes}{149}
-%   \x{12}{none,progressbar=yes}{141}
-%   \x{13}{none,progressbar=yes}{54}
-%   \x{14}{none,progressbar=yes}{43}
-%   \x{15}{none,progressbar=yes}{32}
-
-%   \x{16}{plain,progressbar=yes}{1610}
-%   \x{17}{plain,progressbar=yes}{169}
-%   \x{18}{plain,progressbar=yes}{149}
-%   \x{19}{plain,progressbar=yes}{141}
-%   \x{20}{plain,progressbar=yes}{54}
-%   \x{21}{plain,progressbar=yes}{43}
-%   \x{22}{plain,progressbar=yes}{32}
-
-
-%   \x{23}{simple,progressbar=yes}{1610}
-%   \x{24}{simple,progressbar=yes}{169}
-%   \x{25}{simple,progressbar=yes}{149}
-%   \x{26}{simple,progressbar=yes}{141}
-%   \x{27}{simple,progressbar=yes}{54}
-%   \x{28}{simple,progressbar=yes}{43}
-%   \x{29}{simple,progressbar=yes}{32}
-
-%   \x{30}{fancy,progressbar=yes}{1610}
-%   \x{31}{fancy,progressbar=yes}{169}
-%   \x{32}{fancy,progressbar=yes}{149}
-%   \x{33}{fancy,progressbar=yes}{141}
-%   \x{34}{fancy,progressbar=yes}{54}
-%   \x{35}{fancy,progressbar=yes}{43}
-%   \x{36}{fancy,progressbar=yes}{32}
-% }
-
-
 
 \end{document}
 
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
