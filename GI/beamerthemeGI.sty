@@ -80,7 +80,7 @@
   \setcounter{framenumber}{0}% frame are numbered from 0 (if changed, update \setbeamertemplate{background canvas)
   \begin{center}
     \kern.20\paperheight%
-    \vbox to .5\paperheight{
+    \vbox to .52\paperheight{
       \vfill%
       {\Large\bfseries\usebeamercolor[fg]{title}\inserttitle}%
       \par%
@@ -91,7 +91,11 @@
       {\large\usebeamercolor[fg]{author}\insertauthor}\par%
       {\tiny\usebeamercolor[fg]{institute}\insertinstitute}\par%
       \vfill%
-      {\normalsize\usebeamercolor[fg]{date}\insertdate}%
+    }%
+    \kern.08\paperheight%
+    \vbox to .1\paperheight{
+      \vfill%
+      {\hfill\normalsize\usebeamercolor[fg]{date}\insertdate}%
       \vfill%
     }%
   \end{center}
